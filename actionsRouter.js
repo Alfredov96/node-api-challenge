@@ -35,10 +35,11 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', validatePost, (req, res) => {
-
+    
+    const { id } = req.params;
     const newAction = req.body;
 
-    actions.insert(newAction)
+    actions.insert(newAction, id)
         .then( action => {
             res.status(201).json({success: true, action});
         })

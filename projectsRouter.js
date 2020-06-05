@@ -19,12 +19,12 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
 
-    const { id } = req.params;
+    const {id} = req.params.id;
 
     projects.get(id)
     .then( project => {
 
-        project? res.status(200).send(project) : res.status(404).send("404 not found")
+        project ? res.status(200).send(project) : res.status(404).send("404 not found")
     })
     .catch(error => {
 
@@ -60,6 +60,7 @@ router.post('/', validatePost, (req, res) => {
             res.status(500).json({sucess: false, err})
         });
 });
+
 
 router.put('/:id', validatePut, (req, res) => {
 
